@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Topic 04 — Database-Driven Application</title><style>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Module 3 · Topic 04 — Connect the Pieces</title><style>
 :root{--g:#22b573;--gd:#087a57;--b:#173f76;--p:#7048d8;--bd:#d9e1ea;--soft:#f6f9fc}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#24364b;line-height:1.55;background:#fff}
 .top{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--bd);padding:12px 20px;z-index:5}
@@ -15,211 +15,287 @@ pre{background:#12345a;color:#fff;padding:19px;border-radius:12px;overflow-x:hid
 .dots{display:flex;gap:8px;margin:10px 0 18px}.dot{width:13px;height:13px;border-radius:50%;background:#dbe2ea}.dot.now{background:var(--p);box-shadow:0 0 0 4px #eee9ff}.dot.done{background:var(--g)}
 textarea,input,select{width:100%;padding:11px;border:1px solid #cdd7e3;border-radius:8px;font:inherit}textarea{min-height:90px}.ck{display:flex;gap:10px;margin:12px 0}.ck input{width:19px;height:19px;accent-color:var(--g)}
 .nav{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--bd);padding:11px 20px;margin-top:18px;z-index:5}.navin{max-width:1100px;margin:auto;display:flex;justify-content:space-between}.btn{border:0;border-radius:9px;padding:12px 18px;font-weight:800;cursor:pointer;background:var(--gd);color:#fff}.btn.alt{background:#eef4fb;color:var(--b);border:1px solid #d8e2ee}.btn:disabled{opacity:.45;cursor:not-allowed}
-</style></head>
-<body><div class="top"><div class="row"><div class="brand">MODULE 3 · TOPIC 03D · CONNECT & ANALYSE</div><div class="bar"><i id="bar"></i></div><div class="cnt" id="cnt"></div></div></div>
+</style>
+<style>
+.ans{border:1px solid #d9d9d9;background:#fff;border-radius:8px;padding:10px 14px;margin:5px;cursor:pointer;font-weight:700}
+.ans:hover{background:#f7f5ff}
+.ans.ok{background:#f3fbf7;border-color:#22b573;color:#148653}
+.ans.no{background:#fff5f3;border-color:#d96b55;color:#9a3f2f}
+.muted{font-size:13px;color:#666}
+</style>
+</head>
+<body><div class="top"><div class="row"><div class="brand">MODULE 3 · TOPIC 04 · CONNECT THE PIECES</div><div class="bar"><i id="bar"></i></div><div class="cnt" id="cnt"></div></div></div>
 <main>
 
 <section class="s on">
- <div class="k">🎯 Topic 04 · Connect the Pieces</div>
- <h1>You Have Built the Pieces. Now Put Them Together.</h1>
- <div class="card">
-  <h2>Lesson Learning Outcome</h2>
-  <p><b>Demonstrate a simple database-driven application using systematic and responsible data-handling practices.</b></p>
- </div>
- <div class="card purple">
-  <h2>One System · Three Foundations</h2>
-  <p>Throughout this course, you explored three important parts of system development. A real information system does not use them separately.</p>
+  <div class="k">🎯 TOPIC 04 · CONNECT THE PIECES</div>
+  <h1>From Separate Skills to One Information System</h1>
+  <div class="card purple">
+    <h2>Lesson Learning Outcome</h2>
+    <p><b>Demonstrate a simple database-driven application using systematic and responsible data-handling practices.</b></p>
+  </div>
+  <p>You have already learned how to analyse a problem, build simple program logic, design a database and work with data using SQL. Topic 04 does not add another difficult technology. Instead, it helps you see <b>how everything fits together</b>.</p>
   <div class="map">
-   <div class="box">🟠 ANALYSE<br><small>Understand the problem</small></div>
-   <span class="arrow">→</span>
-   <div class="box">🔵 PROGRAM<br><small>Build the logic</small></div>
-   <span class="arrow">→</span>
-   <div class="box">🟢 DATABASE<br><small>Manage the data</small></div>
-   <span class="arrow">→</span>
-   <div class="box">🟣 SYSTEM<br><small>Connect the pieces</small></div>
+    <div class="box">🟠 UNDERSTAND<br><small>System Analysis &amp; Design</small></div><span class="arrow">→</span>
+    <div class="box">🔵 BUILD<br><small>Programming</small></div><span class="arrow">→</span>
+    <div class="box">🟢 MANAGE<br><small>Database</small></div><span class="arrow">→</span>
+    <div class="box">🟣 CONNECT<br><small>Information System</small></div>
   </div>
- </div>
- <div class="good"><b>Your final mission:</b> follow one simple Car Rental story and see how everything you learned works together.</div>
+  <div class="good"><b>Your mission:</b> follow one Car Rental transaction from a customer's request to useful information.</div>
 </section>
 
 <section class="s">
- <div class="k">🔍 Explore · One Simple Story</div>
- <h1>A Customer Wants to Rent a Car</h1>
- <div class="card purple" style="text-align:center">
-  <div style="font-size:52px">🚗</div>
-  <h2>“I want to rent a Honda City from 10–12 October.”</h2>
- </div>
- <p>It sounds simple. But a system must answer several questions before it can complete the booking.</p>
- <div class="grid">
-  <div class="card orange">
-   <h2>🟠 Analyse</h2>
-   <p><b>What must the system do?</b></p>
-   <p>What information and processes are required?</p>
+  <div class="k">🔍 EXPLORE · START WITH THE USER</div>
+  <h1>Aisyah Wants to Rent a Car</h1>
+  <div class="card purple" style="text-align:center">
+    <div style="font-size:48px">👤 🚗</div>
+    <h2>“I want to rent a Honda City from 10–12 October.”</h2>
   </div>
-  <div class="card blue">
-   <h2>🔵 Program</h2>
-   <p><b>What steps must the computer follow?</b></p>
-   <p>What should happen first, next and last?</p>
+  <p>To Aisyah, this is one simple request. To the system, several things must work together.</p>
+  <div class="grid">
+    <div class="card orange"><h2>What must be understood?</h2><p>Who is the customer? Which vehicle? Which dates? What result is expected?</p></div>
+    <div class="card blue"><h2>What must happen?</h2><p>Receive input, check it, follow the booking steps and display a result.</p></div>
+    <div class="card"><h2>What must be remembered?</h2><p>Customer, vehicle and booking information must remain available later.</p></div>
   </div>
-  <div class="card">
-   <h2>🟢 Database</h2>
-   <p><b>What information must be stored?</b></p>
-   <p>How are customer, vehicle and booking data connected?</p>
-  </div>
- </div>
- <div class="note">These are not three unrelated questions. They are different views of the <b>same system</b>.</div>
+  <div class="note"><b>Think:</b> Which part belongs to analysis, which belongs to programming, and which belongs to the database?</div>
 </section>
 
 <section class="s">
- <div class="k">📖 Learn 1 · From Requirement to System</div>
- <h1>Follow the Journey</h1>
- <div class="map">
-  <div class="box">👤 CUSTOMER<br><small>“I want to rent a car.”</small></div>
-  <span class="arrow">→</span>
-  <div class="box">💡 REQUIREMENT<br><small>Create a booking</small></div>
-  <span class="arrow">→</span>
-  <div class="box">⚙️ PROCESS<br><small>Customer → Vehicle → Dates → Confirm</small></div>
-  <span class="arrow">→</span>
-  <div class="box">🗄️ DATA<br><small>Store the booking</small></div>
-  <span class="arrow">→</span>
-  <div class="box">✅ INFORMATION<br><small>Booking confirmation</small></div>
- </div>
- <div class="card purple">
-  <h2>System development connects a need to a useful result.</h2>
-  <p>We first understand the problem. Then we define the process, build the logic, manage the required data and produce useful information for the user.</p>
- </div>
-</section>
-
-<section class="s">
- <div class="k">📖 Learn 2 · Each Part Has a Job</div>
- <h1>Three Foundations of the Same System</h1>
- <div class="grid">
-  <div class="card orange">
-   <h2>🟠 System Analysis &amp; Design</h2>
-   <p>Helps us understand <b>what the system needs to do</b>.</p>
-   <p><span class="tag">Requirements</span> <span class="tag">Context Diagram</span> <span class="tag">DFD</span></p>
-  </div>
-  <div class="card blue">
-   <h2>🔵 Programming</h2>
-   <p>Tells the computer <b>what steps to perform</b>.</p>
-   <p><span class="tag">Input</span> <span class="tag">Process</span> <span class="tag">Decision</span> <span class="tag">Output</span></p>
-  </div>
-  <div class="card">
-   <h2>🟢 Database</h2>
-   <p>Organises and manages <b>the data the system needs</b>.</p>
-   <p><span class="tag">ERD</span> <span class="tag">Tables</span> <span class="tag">Relationships</span> <span class="tag">SQL</span></p>
-  </div>
- </div>
- <div class="good"><b>A useful information system brings all three together.</b></div>
-</section>
-
-<section class="s">
- <div class="k">🧩 Try · Which Part Is Responsible?</div>
- <h1>Connect Each Task to What You Learned</h1>
- <div class="card">
-  <p><b>1.</b> Identify the information required to make a booking.</p>
-  <button class="ans" onclick="pick(this,true)">🟠 System Analysis &amp; Design</button>
-  <button class="ans" onclick="pick(this,false)">🔵 Programming</button>
-  <button class="ans" onclick="pick(this,false)">🟢 Database</button>
- </div>
- <div class="card">
-  <p><b>2.</b> Decide that the program should display an error when required input is missing.</p>
-  <button class="ans" onclick="pick(this,false)">🟠 System Analysis &amp; Design</button>
-  <button class="ans" onclick="pick(this,true)">🔵 Programming</button>
-  <button class="ans" onclick="pick(this,false)">🟢 Database</button>
- </div>
- <div class="card">
-  <p><b>3.</b> Store CustomerID, VehicleID, StartDate and EndDate in a booking record.</p>
-  <button class="ans" onclick="pick(this,false)">🟠 System Analysis &amp; Design</button>
-  <button class="ans" onclick="pick(this,false)">🔵 Programming</button>
-  <button class="ans" onclick="pick(this,true)">🟢 Database</button>
- </div>
- <div class="good" id="trymsg" aria-live="polite">Choose an answer in each example. The goal is to recognise the role of each part.</div>
-</section>
-
-<section class="s">
- <div class="k">📖 Learn 3 · Program + Database</div>
- <h1>How Does the Program Use the Database?</h1>
- <p>You do not need to learn new connector code here. Focus on the <b>flow of information</b>.</p>
- <div class="map">
-  <div class="box">👤 USER<br><small>“Show available cars”</small></div>
-  <span class="arrow">→</span>
-  <div class="box">🔵 PROGRAM<br><small>Receives the request</small></div>
-  <span class="arrow">→</span>
-  <div class="box">🟢 DATABASE<br><small>Finds vehicle data</small></div>
-  <span class="arrow">→</span>
-  <div class="box">🔵 PROGRAM<br><small>Displays the result</small></div>
-  <span class="arrow">→</span>
-  <div class="box">👤 USER</div>
- </div>
- <div class="card purple">
-  <h2>💡 Behind the scenes</h2>
-  <p>In a real system, a programming language such as <b>C++</b> can communicate with a database system such as <b>MySQL</b> using a database connector.</p>
-  <p><b>You do not need to learn the connector code in this topic.</b> What matters is understanding that the program can request data and the database can return the required information.</p>
- </div>
- <div class="grid">
-  <div class="tile"><div class="op">🔵 Program</div><p>“Please give me the matching vehicle information.”</p></div>
-  <div class="tile"><div class="op">🟢 Database</div><p>Finds the stored records and returns the result.</p></div>
- </div>
-</section>
-
-<section class="s">
- <div class="k">🛠️ Apply · One Complete Transaction</div>
- <h1>Follow the Honda City Booking</h1>
- <div class="card purple">
-  <h2>🚗 Customer Request</h2>
-  <p>“I want to rent a Honda City from 10–12 October.”</p>
- </div>
- <div class="grid">
-  <div class="card orange">
-   <h2>1 · 🟠 Understand</h2>
-   <p>The booking requires a <b>customer, vehicle and rental dates</b>.</p>
-  </div>
-  <div class="card blue">
-   <h2>2 · 🔵 Follow the Logic</h2>
-   <p>Enter Customer → Choose Vehicle → Enter Dates → Confirm Booking</p>
-  </div>
-  <div class="card">
-   <h2>3 · 🟢 Store the Data</h2>
-   <pre>BOOKING
-------------------
-BookingID : B010
-Customer  : C010
-Vehicle   : V003
-StartDate : 10 Oct
-EndDate   : 12 Oct</pre>
+  <div class="k">🔍 EXPLORE · THE CHALLENGE</div>
+  <h1>What Happens After Aisyah Clicks “Confirm”?</h1>
+  <div class="map">
+    <div class="box">👤 Aisyah<br><small>enters booking details</small></div><span class="arrow">→</span>
+    <div class="box">🖥️ Application<br><small>receives the request</small></div><span class="arrow">→</span>
+    <div class="box">❓ What happens here?</div><span class="arrow">→</span>
+    <div class="box">✅ Confirmation<br><small>booking created</small></div>
   </div>
   <div class="card purple">
-   <h2>4 · 🟣 Produce Information</h2>
-   <p><b>✅ Booking B010 confirmed</b><br>Honda City<br>10–12 October</p>
+    <h2>Three questions guide this topic</h2>
+    <p>1. How does the application know what to do?</p>
+    <p>2. How does it get or store the data it needs?</p>
+    <p>3. How do all the pieces produce useful information for the user?</p>
   </div>
- </div>
- <div class="good"><b>Can you see the connection?</b> Analysis identified what was needed. Programming controlled the steps. The database managed the data. Together they produced a useful result.</div>
+  <div class="good">Keep these questions in mind. You are about to connect ideas from the whole course.</div>
 </section>
 
 <section class="s">
- <div class="k">🏁 Final Review · System Development Fundamentals</div>
- <h1>You Were Never Learning Three Unrelated Subjects</h1>
- <div class="card purple" style="text-align:center">
-  <div style="font-size:42px">💡</div>
-  <h2>BUSINESS PROBLEM</h2>
-  <div class="arrow">↓</div>
-  <div class="box" style="margin:10px auto;max-width:500px">🟠 UNDERSTAND<br><small>System Analysis &amp; Design</small></div>
-  <div class="arrow">↓</div>
-  <div class="box" style="margin:10px auto;max-width:500px">🔵 BUILD<br><small>Programming</small></div>
-  <div class="arrow">↓</div>
-  <div class="box" style="margin:10px auto;max-width:500px">🟢 MANAGE<br><small>Database</small></div>
-  <div class="arrow">↓</div>
-  <div class="box" style="margin:10px auto;max-width:500px">🟣 CONNECT</div>
-  <div class="arrow">↓</div>
-  <h2>INFORMATION SYSTEM</h2>
- </div>
- <div class="grid">
-  <div class="tile"><b>🟠 Analysis</b><p>helps us understand the problem.</p></div>
-  <div class="tile"><b>🔵 Programming</b><p>helps us build the logic.</p></div>
-  <div class="tile"><b>🟢 Database</b><p>helps us manage the data.</p></div>
- </div>
- <div class="good" style="text-align:center;font-size:18px"><b>Together, they form the foundation of system development.</b><br><br>Topic 04 Complete ✓</div>
+  <div class="k">📖 LEARN 1 · EACH PART HAS A JOB</div>
+  <h1>Three Foundations — One System</h1>
+  <div class="grid">
+    <div class="card orange">
+      <h2>🟠 System Analysis &amp; Design</h2>
+      <p><b>Purpose:</b> understand the problem and system requirements.</p>
+      <p><span class="tag">Requirement</span> <span class="tag">Context Diagram</span> <span class="tag">DFD</span></p>
+      <p><b>Car Rental question:</b> What must the booking process do?</p>
+    </div>
+    <div class="card blue">
+      <h2>🔵 Programming</h2>
+      <p><b>Purpose:</b> define the logic and steps performed by the computer.</p>
+      <p><span class="tag">Input</span> <span class="tag">Process</span> <span class="tag">Decision</span> <span class="tag">Output</span></p>
+      <p><b>Car Rental question:</b> What should happen after the user chooses a vehicle?</p>
+    </div>
+    <div class="card">
+      <h2>🟢 Database</h2>
+      <p><b>Purpose:</b> organise, store and retrieve the data required by the system.</p>
+      <p><span class="tag">ERD</span> <span class="tag">Tables</span> <span class="tag">Relationships</span> <span class="tag">SQL</span></p>
+      <p><b>Car Rental question:</b> What customer, vehicle and booking data must be kept?</p>
+    </div>
+  </div>
+  <div class="good"><b>Key idea:</b> these components solve different parts of the same business problem.</div>
+</section>
+
+<section class="s">
+  <div class="k">📖 LEARN 2 · FOLLOW THE SYSTEM JOURNEY</div>
+  <h1>From Business Need to Useful Information</h1>
+  <div class="map">
+    <div class="box">💡 BUSINESS NEED<br><small>Rent a vehicle</small></div><span class="arrow">→</span>
+    <div class="box">🟠 REQUIREMENT<br><small>Create a booking</small></div><span class="arrow">→</span>
+    <div class="box">🔵 PROCESS<br><small>Customer → Vehicle → Dates → Confirm</small></div><span class="arrow">→</span>
+    <div class="box">🟢 DATA<br><small>Store booking</small></div><span class="arrow">→</span>
+    <div class="box">📊 INFORMATION<br><small>Booking confirmation</small></div>
+  </div>
+  <div class="card purple">
+    <h2>Notice the difference</h2>
+    <p><b>Data</b> are individual facts such as CustomerID, VehicleID and StartDate.</p>
+    <p><b>Information</b> is the useful result produced when the system processes those facts—for example, a confirmed booking for Aisyah.</p>
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">📖 LEARN 3 · THE APPLICATION IN THE MIDDLE</div>
+  <h1>How Does a Program Use a Database?</h1>
+  <p>Users normally do not type SQL commands. They interact with an application. The application handles the request and communicates with the database.</p>
+  <div class="map">
+    <div class="box">👤 USER<br><small>“Show available cars”</small></div><span class="arrow">→</span>
+    <div class="box">🔵 PROGRAM<br><small>understands the action</small></div><span class="arrow">→</span>
+    <div class="box">🟢 DATABASE<br><small>finds the data</small></div><span class="arrow">→</span>
+    <div class="box">🔵 PROGRAM<br><small>formats the result</small></div><span class="arrow">→</span>
+    <div class="box">👤 USER<br><small>sees the vehicles</small></div>
+  </div>
+  <div class="card purple">
+    <h2>💡 Where do C++ and MySQL fit?</h2>
+    <p>A programming language such as <b>C++</b> can be used to build application logic. A database system such as <b>MySQL</b> can manage stored data. Software called a <b>database connector</b> allows them to communicate.</p>
+    <p><b>You do not need to learn connector code here.</b> The important idea is the communication flow.</p>
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">📖 LEARN 4 · CONNECT TO WHAT YOU ALREADY KNOW</div>
+  <h1>The Buttons May Be New — The Database Operations Are Not</h1>
+  <div class="grid">
+    <div class="tile"><div class="op">➕ Add Customer</div><p>Behind the action, the system needs to <b>create/store</b> a customer record.</p><p class="muted">You met this idea with INSERT.</p></div>
+    <div class="tile"><div class="op">🔎 View Vehicles</div><p>The system needs to <b>retrieve</b> vehicle records.</p><p class="muted">You met this idea with SELECT.</p></div>
+    <div class="tile"><div class="op">✏️ Edit Booking</div><p>The system needs to <b>change</b> an existing record.</p><p class="muted">You met this idea with UPDATE.</p></div>
+    <div class="tile"><div class="op">🗑️ Cancel Record</div><p>The system may need to <b>remove</b> a record safely.</p><p class="muted">You met this idea with DELETE.</p></div>
+  </div>
+  <div class="good"><b>A graphical button does not replace the database operation.</b> It gives the user an easier way to request that operation.</div>
+</section>
+
+<section class="s">
+  <div class="k">🧩 TRY · WHO IS RESPONSIBLE?</div>
+  <h1>Connect the Task to the Main Component</h1>
+  <div class="card">
+    <p><b>1.</b> Identify what information is required to make a booking.</p>
+    <button class="ans" onclick="pick(this,true)">🟠 Analysis &amp; Design</button>
+    <button class="ans" onclick="pick(this,false)">🔵 Programming</button>
+    <button class="ans" onclick="pick(this,false)">🟢 Database</button>
+  </div>
+  <div class="card">
+    <p><b>2.</b> Decide that the program should display an error when a required value is missing.</p>
+    <button class="ans" onclick="pick(this,false)">🟠 Analysis &amp; Design</button>
+    <button class="ans" onclick="pick(this,true)">🔵 Programming</button>
+    <button class="ans" onclick="pick(this,false)">🟢 Database</button>
+  </div>
+  <div class="card">
+    <p><b>3.</b> Keep CustomerID, VehicleID, StartDate and EndDate for later use.</p>
+    <button class="ans" onclick="pick(this,false)">🟠 Analysis &amp; Design</button>
+    <button class="ans" onclick="pick(this,false)">🔵 Programming</button>
+    <button class="ans" onclick="pick(this,true)">🟢 Database</button>
+  </div>
+  <div class="good" id="trymsg" aria-live="polite">Choose an answer. Use the feedback to check your thinking.</div>
+</section>
+
+<section class="s">
+  <div class="k">🧩 TRY · TRACE THE INFORMATION</div>
+  <h1>What Happens When Aisyah Requests a Vehicle List?</h1>
+  <div class="card purple">
+    <p><b>Put the ideas in your mind in this order:</b></p>
+    <div class="map">
+      <div class="box">1 · User request</div><span class="arrow">→</span>
+      <div class="box">2 · Program action</div><span class="arrow">→</span>
+      <div class="box">3 · Database request</div><span class="arrow">→</span>
+      <div class="box">4 · Data returned</div><span class="arrow">→</span>
+      <div class="box">5 · Result displayed</div>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="tile"><b>Question A</b><p>Who asks for the data?</p><button class="ans" onclick="reveal(this,'The program asks the database for the required vehicle data.')">Show answer</button></div>
+    <div class="tile"><b>Question B</b><p>Who stores and returns the vehicle records?</p><button class="ans" onclick="reveal(this,'The database stores the records and returns the matching data.')">Show answer</button></div>
+    <div class="tile"><b>Question C</b><p>Who turns the returned data into something the user can see?</p><button class="ans" onclick="reveal(this,'The program receives the returned data and displays useful information to the user.')">Show answer</button></div>
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">🛠️ APPLY · FOLLOW ONE COMPLETE TRANSACTION</div>
+  <h1>Aisyah Books the Honda City</h1>
+  <div class="card purple"><h2>🚗 Request</h2><p>“I want to rent a Honda City from 10–12 October.”</p></div>
+  <div class="grid">
+    <div class="card orange"><h2>1 · Understand</h2><p>The system needs a customer, a vehicle and rental dates.</p></div>
+    <div class="card blue"><h2>2 · Follow the Logic</h2><p>Identify customer → choose vehicle → enter dates → validate → confirm.</p></div>
+    <div class="card"><h2>3 · Manage the Data</h2><p>The database stores the booking and connects it to the correct customer and vehicle.</p></div>
+    <div class="card purple"><h2>4 · Produce Information</h2><p><b>✅ Booking B010 confirmed</b><br>Honda City · 10–12 October</p></div>
+  </div>
+  <div class="note"><b>Trace it backwards:</b> the confirmation is useful because the correct data was stored; the correct data was stored because the program followed the required process; the process exists because the requirement was understood.</div>
+</section>
+
+<section class="s">
+  <div class="k">📖 LEARN 5 · SYSTEMATIC &amp; RESPONSIBLE DATA HANDLING</div>
+  <h1>A Working System Must Also Handle Data Carefully</h1>
+  <div class="grid">
+    <div class="card"><h2>✓ Validate</h2><p>Check required values before saving. Rental dates should make sense and required IDs should be present.</p></div>
+    <div class="card"><h2>🔗 Maintain Relationships</h2><p>A booking should refer to a valid customer and a valid vehicle.</p></div>
+    <div class="card"><h2>⚠️ Confirm Important Actions</h2><p>Ask for confirmation before actions that may remove or change important records.</p></div>
+    <div class="card"><h2>🔒 Use Data Responsibly</h2><p>Display only information needed for the task and avoid exposing unnecessary customer details.</p></div>
+  </div>
+  <div class="good"><b>Responsible system development is not only about making the program work.</b> It is also about handling data correctly, consistently and appropriately.</div>
+</section>
+
+<section class="s">
+  <div class="k">🛠️ APPLY · THINK LIKE A SYSTEM DEVELOPER</div>
+  <h1>Can You Explain the Whole Booking?</h1>
+  <div class="card purple">
+    <h2>Scenario</h2>
+    <p>Aisyah selects Honda City, enters her rental dates and clicks <b>Confirm Booking</b>.</p>
+  </div>
+  <div class="card">
+    <h2>Your explanation should answer:</h2>
+    <p>🟠 <b>Analysis:</b> What requirement is being satisfied?</p>
+    <p>🔵 <b>Programming:</b> What main steps should the program perform?</p>
+    <p>🟢 <b>Database:</b> What data must be stored or retrieved?</p>
+    <p>🟣 <b>Integration:</b> What useful information should be returned to Aisyah?</p>
+    <p>🛡️ <b>Responsible handling:</b> What should the system check before saving?</p>
+  </div>
+  <div class="note">Keep your answer conceptual. You do <b>not</b> need to write C++, connector code or SQL here.</div>
+</section>
+
+<section class="s">
+  <div class="k">🔎 REVIEW · CAN YOU SEE THE WHOLE SYSTEM?</div>
+  <h1>From Problem to Information System</h1>
+  <div class="map">
+    <div class="box">💡 BUSINESS PROBLEM</div><span class="arrow">→</span>
+    <div class="box">🟠 ANALYSE<br><small>requirements &amp; processes</small></div><span class="arrow">→</span>
+    <div class="box">🔵 PROGRAM<br><small>logic &amp; operations</small></div><span class="arrow">→</span>
+    <div class="box">🟢 DATABASE<br><small>organised related data</small></div><span class="arrow">→</span>
+    <div class="box">🟣 INFORMATION SYSTEM<br><small>useful result for users</small></div>
+  </div>
+  <div class="card">
+    <h2>Before you continue, can you explain these ideas?</h2>
+    <p>□ Why analysis comes before implementation.</p>
+    <p>□ How program logic controls what happens.</p>
+    <p>□ Why the application needs stored data.</p>
+    <p>□ How the program and database communicate conceptually.</p>
+    <p>□ Why validation and responsible data handling matter.</p>
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">✅ CHECK · SHOW YOUR UNDERSTANDING</div>
+  <h1>Explain How the Pieces Work Together</h1>
+  <div class="card purple">
+    <h2>Final Topic 04 Challenge</h2>
+    <p>Using the Car Rental example, explain how <b>System Analysis &amp; Design, Programming and Database</b> work together to process a customer's booking request and produce useful information.</p>
+  </div>
+  <div class="grid">
+    <div class="tile"><b>Your explanation should include</b><p>✓ the business requirement<br>✓ the program's role<br>✓ the database's role<br>✓ the information returned to the user</p></div>
+    <div class="tile"><b>Also show responsible practice</b><p>✓ validation before saving<br>✓ correct relationships<br>✓ careful handling of customer data</p></div>
+  </div>
+  <div class="note"><b>No complex code is required.</b> The goal is to demonstrate that you understand the complete system.</div>
+</section>
+
+<section class="s">
+  <div class="k">🏁 COURSE INTEGRATION · SYSTEM DEVELOPMENT FUNDAMENTALS</div>
+  <h1>You Were Not Learning Three Unrelated Subjects</h1>
+  <div class="card purple" style="text-align:center">
+    <div style="font-size:42px">💡</div><h2>BUSINESS PROBLEM</h2>
+    <div class="arrow">↓</div>
+    <div class="box" style="margin:10px auto;max-width:520px">🟠 UNDERSTAND<br><small>System Analysis &amp; Design</small></div>
+    <div class="arrow">↓</div>
+    <div class="box" style="margin:10px auto;max-width:520px">🔵 BUILD<br><small>Programming</small></div>
+    <div class="arrow">↓</div>
+    <div class="box" style="margin:10px auto;max-width:520px">🟢 MANAGE<br><small>Database</small></div>
+    <div class="arrow">↓</div>
+    <div class="box" style="margin:10px auto;max-width:520px">🟣 CONNECT<br><small>Information System</small></div>
+  </div>
+  <div class="good" style="text-align:center;font-size:18px">
+    <b>Analysis helps us understand the problem.<br>
+    Programming helps us build the logic.<br>
+    Database helps us manage the data.<br><br>
+    Together, they form the foundation of system development.</b>
+  </div>
+  <div class="card" style="text-align:center">
+    <h2>🎉 Topic 04 Complete</h2>
+    <p>You have reached the end of the Module 3 learning journey and connected the major ideas across System Development Fundamentals.</p>
+  </div>
 </section>
 
 </main><div class="nav"><div class="navin"><button class="btn alt" id="prev">← Previous</button><button class="btn" id="next">Next →</button></div></div>
@@ -230,27 +306,37 @@ const bar=document.getElementById('bar'),cnt=document.getElementById('cnt');
 const prev=document.getElementById('prev'),next=document.getElementById('next');
 
 function show(i){
- cur=Math.max(0,Math.min(i,S.length-1));
- S.forEach((x,n)=>x.classList.toggle('on',n===cur));
- bar.style.width=((cur+1)/S.length*100)+'%';
- cnt.textContent=(cur+1)+' / '+S.length;
- prev.disabled=cur===0;
- next.textContent=cur===S.length-1?'Finish ✓':'Next →';
- window.scrollTo(0,0);
+  cur=Math.max(0,Math.min(i,S.length-1));
+  S.forEach((x,n)=>x.classList.toggle('on',n===cur));
+  if(bar) bar.style.width=((cur+1)/S.length*100)+'%';
+  if(cnt) cnt.textContent=(cur+1)+' / '+S.length;
+  if(prev) prev.disabled=cur===0;
+  if(next) next.textContent=cur===S.length-1?'Finish ✓':'Next →';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-prev.onclick=()=>show(cur-1);
-next.onclick=()=>{if(cur<S.length-1)show(cur+1)};
+if(prev) prev.onclick=()=>show(cur-1);
+if(next) next.onclick=()=>{ if(cur<S.length-1) show(cur+1); };
 
 function pick(btn,correct){
- const group=btn.parentElement;
- group.querySelectorAll('.ans').forEach(b=>{
-   b.classList.remove('ok','no');
- });
- btn.classList.add(correct?'ok':'no');
- const msg=document.getElementById('trymsg');
- msg.innerHTML=correct
-   ? '<b>Correct ✓</b> You identified the main role represented by this task.'
-   : '<b>Try another answer.</b> Think about whether the task is mainly about understanding the requirement, controlling the program steps, or managing stored data.';
+  const group=btn.parentElement;
+  group.querySelectorAll('.ans').forEach(b=>b.classList.remove('ok','no'));
+  btn.classList.add(correct?'ok':'no');
+  const msg=document.getElementById('trymsg');
+  if(msg){
+    msg.innerHTML=correct
+      ? '<b>Correct ✓</b> You identified the main role represented by this task.'
+      : '<b>Try another answer.</b> Think about whether the task is mainly about understanding the requirement, controlling program steps, or managing stored data.';
+  }
+}
+function reveal(btn,text){
+  let box=btn.parentElement.querySelector('.reveal');
+  if(!box){
+    box=document.createElement('div');
+    box.className='reveal good';
+    box.style.marginTop='12px';
+    btn.parentElement.appendChild(box);
+  }
+  box.textContent=text;
 }
 show(0);
 </script></body></html>
